@@ -1,0 +1,8 @@
+{
+  "name": "intercom",
+  "description": "Basic reactive intercom package",
+  "homepage": "https://github.com/percolatestudio/intercom",
+  "author": "Tom Coleman (https://github.com/tmeasday)",
+  "version": "0.1.0",
+  "git": "https://github.com/percolatestudio/intercom.git"
+}
