@@ -1,3 +1,7 @@
+A package to use intercom.io easily with Meteor.
+
+v0.1.0 - still in development.
+
 ### NOTES
 
 Ensure you have `Meteor.settings.intercom.secret` and `Meteor.settings.public.intercom.id`.
