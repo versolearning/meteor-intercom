@@ -3,6 +3,6 @@
   "description": "Basic reactive intercom package",
   "homepage": "https://github.com/percolatestudio/meteor-intercom",
   "author": "Tom Coleman (https://github.com/tmeasday)",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "git": "https://github.com/percolatestudio/meteor-intercom.git"
 }
