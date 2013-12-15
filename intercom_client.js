@@ -17,8 +17,7 @@ IntercomSettings = {
   }
 }
 
-// store this in a session variable so it survivces HCR
-var booted = Session.get('booted') || false;
+var booted = false;
 
 // send data to intercom
 Meteor.startup(function() {
@@ -34,10 +33,12 @@ Meteor.startup(function() {
       info = IntercomSettings.minimumUserInfo(user);
     
     if (info) {
-      // console.log('Sending data to intercom', info);
+      var type = booted ? 'update': 'boot';
       
-      Session.set('booted', booted = true);
-      Intercom(booted ? 'boot' : 'update', info);
+      // console.log('Sending data to intercom', type, info);
+      Intercom(type, info);
+      
+      booted = true;
     }
   });
 })
