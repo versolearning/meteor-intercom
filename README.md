@@ -28,7 +28,7 @@ IntercomSettings.userInfo = function(user, info) {
 
 ## Notes
 
-If you want to use Intercom's secure mode (you do), you need to add a `intercomHash` property to your user objects. To make new users get such a property, you can do something like
+If you want to use Intercom's secure mode (you do), you need to add a `intercomHash` property to your user objects. To make new users get such a property, you can do something like:
 
 ```js
 Accounts.onCreateUser(function(options, user) {
@@ -40,6 +40,9 @@ Accounts.onCreateUser(function(options, user) {
   return user;
 });  
 ```
+
+If you need to update your existing users, you could use [Meteor Migrations](https://github.com/percolatestudio/meteor-migrations).
+
 
 ## License 
 
