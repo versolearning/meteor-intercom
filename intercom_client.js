@@ -1,20 +1,26 @@
-IntercomSettings = {
-  // default, override
-  minimumUserInfo: function(user) {
-    var info = {
-      app_id: Meteor.settings.public.intercom.id,
-      
-      user_id: user._id,
-      
-      created_at: Math.round(Meteor.user().createdAt/1000)
-    }
+Meteor.subscribe('intercomHash');
+
+var minimumUserInfo = function(user) {
+  var info = {
+    app_id: Meteor.settings.public.intercom.id,
     
-    // they actually need to have this but it can be useful for testing
-    if (user.intercomHash)
-      info.user_hash = user.intercomHash;
+    user_id: user._id,
     
-    return info;
+    created_at: Math.round(Meteor.user().createdAt/1000)
   }
+  
+  // they actually need to have this but it can be useful for testing
+  if (user.intercomHash)
+    info.user_hash = user.intercomHash;
+  
+  return info;
+}
+
+
+
+IntercomSettings = {
+  // if you want to manually call it
+  minimumUserInfo: minimumUserInfo
 }
 
 var booted = false;
@@ -26,16 +32,13 @@ Meteor.startup(function() {
     if (!user) // "log out"
       return Intercom('shutdown');
   
-    var info;
+    var info = IntercomSettings.minimumUserInfo(user);
     if (IntercomSettings.userInfo)
-      info = IntercomSettings.userInfo(user);
-    else
-      info = IntercomSettings.minimumUserInfo(user);
+      IntercomSettings.userInfo(user, info);
     
     if (info) {
       var type = booted ? 'update': 'boot';
       
-      // console.log('Sending data to intercom', type, info);
       Intercom(type, info);
       
       booted = true;
