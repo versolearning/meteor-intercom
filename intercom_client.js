@@ -33,12 +33,17 @@ Meteor.startup(function() {
       return Intercom('shutdown');
   
     var info = IntercomSettings.minimumUserInfo(user);
-    if (IntercomSettings.userInfo)
-      IntercomSettings.userInfo(user, info);
+    if (IntercomSettings.userInfo) {
+      var ready = IntercomSettings.userInfo(user, info);
+      if (ready === false)
+        return;
+    }
+      
     
     if (info) {
       var type = booted ? 'update': 'boot';
       
+      console.log(type, info)
       Intercom(type, info);
       
       booted = true;

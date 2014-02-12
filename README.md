@@ -26,6 +26,8 @@ IntercomSettings.userInfo = function(user, info) {
 }
 ```
 
+If you need to wait on a user subscription for e.g. the hash to come down, you can return `false` in your `userInfo` function to tell the package to wait.
+
 ## Notes
 
 If you want to use Intercom's secure mode (you do), you need to add a `intercomHash` property to your user objects. To make new users get such a property, you can do something like:
