@@ -43,7 +43,7 @@ Meteor.startup(function() {
     if (info) {
       var type = booted ? 'update': 'boot';
       
-      console.log(type, info)
+      // console.log(type, info)
       Intercom(type, info);
       
       booted = true;
