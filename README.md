@@ -1,6 +1,6 @@
 # Meteor Intercom
 
-A package to use [intercom.io](http://intercom.io) easily with Meteor.
+A package to use [Intercom.io](http://intercom.io) easily with Meteor.
 
 ## Installation
 

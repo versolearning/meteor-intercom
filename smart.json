@@ -1,6 +1,6 @@
 {
   "name": "intercom",
-  "description": "Basic reactive intercom package",
+  "description": "Intercom.io with basic reactivity",
   "homepage": "https://github.com/percolatestudio/meteor-intercom",
   "author": "Tom Coleman (https://github.com/tmeasday)",
   "version": "0.5.2",
