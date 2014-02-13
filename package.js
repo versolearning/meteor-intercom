@@ -1,5 +1,5 @@
 Package.describe({
-  summary: "Basic intercom integration"
+  summary: "Intercom.io basic integration"
 });
 
 Package.on_use(function (api, where) {
