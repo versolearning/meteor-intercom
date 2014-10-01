@@ -1,4 +1,4 @@
-Meteor.subscribe('intercomHash');
+Meteor.subscribe('currentUserIntercomHash');
 
 var minimumUserInfo = function(user) {
   var info = {

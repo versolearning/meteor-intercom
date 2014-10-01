@@ -1,12 +1,23 @@
+// Generate an intercomHash for secure mode as outlined at
+// https://segment.io/docs/integrations/intercom/#secure-mode
 var crypto = Npm.require('crypto');
 
-IntercomHash =  function(user) {
-  var secret = new Buffer(Meteor.settings.intercom.secret, 'utf8')
-  return crypto.createHmac('sha256', secret)
-    .update(user._id).digest('hex');
+// returns undefined if there is no secret
+var IntercomHash =  function(userId) {
+  var secret = Meteor.settings.intercom.secret;
+
+  if (secret) {
+    return crypto.createHmac('sha256', new Buffer(secret, 'utf8'))
+      .update(userId).digest('hex');
+  }
 }
 
-// publish the intercom hash ONLY of the currentUser ONLY
-Meteor.publish('intercomHash', function() {
-  return Meteor.users.find({_id: this.userId}, {fields: {intercomHash: true, createdAt: true}});
+Meteor.publish('currentUserIntercomHash', function() {
+  if (this.userId) {
+    var intercomHash = IntercomHash(this.userId);
+    
+    if (intercomHash)
+      this.added("users", this.userId, {intercomHash: intercomHash});
+  }
+  this.ready();
 });

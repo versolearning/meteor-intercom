@@ -30,21 +30,7 @@ If you need to wait on a user subscription for e.g. the hash to come down, you c
 
 ## Notes
 
-If you want to use Intercom's secure mode (you do), you need to add a `intercomHash` property to your user objects. To make new users get such a property, you can do something like:
-
-```js
-Accounts.onCreateUser(function(options, user) {
-  user.intercomHash = IntercomHash(user);
-
-  if (options.profile)
-    user.profile = options.profile;
-
-  return user;
-});  
-```
-
-If you need to update your existing users, you could use [Meteor Migrations](https://github.com/percolatestudio/meteor-migrations).
-
+This package will automatically subscribe the current user to the `currentUserIntercomHash` publication which will add an `intercomHash` property to your user documents enabling the use of intercom's secure mode. 
 
 ## License 
 
