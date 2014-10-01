@@ -4,10 +4,10 @@ A package to use [Intercom.io](http://intercom.io) easily with Meteor.
 
 ## Installation
 
-Intercom can be installed with [Meteorite](https://github.com/oortcloud/meteorite/). From inside a Meteorite-managed app:
+Intercom can be installed with Meteor's package manager:
 
 ``` sh
-$ mrt add intercom
+$ meteor add percolate:intercom
 ```
 
 ## API
