@@ -27,7 +27,8 @@ var booted = false;
 
 // send data to intercom
 Meteor.startup(function() {
-  if (Meteor.settings.public.intercom && Meteor.settings.public.intercom.id) {
+  if (Meteor.settings && 
+      Meteor.settings.public.intercom && Meteor.settings.public.intercom.id) {
     Deps.autorun(function() {
       var user = Meteor.user();
       if (!user) // "log out"

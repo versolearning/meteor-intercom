@@ -4,7 +4,8 @@ var crypto = Npm.require('crypto');
 
 // returns undefined if there is no secret
 var IntercomHash =  function(userId) {
-  var secret = Meteor.settings.intercom && Meteor.settings.intercom.secret;
+  var secret = Meteor.settings && 
+      Meteor.settings.intercom && Meteor.settings.intercom.secret;
 
   if (secret) {
     return crypto.createHmac('sha256', new Buffer(secret, 'utf8'))
@@ -12,14 +13,12 @@ var IntercomHash =  function(userId) {
   }
 }
 
-if (Meteor.settings.intercom && Meteor.settings.intercom.secret) {
-  Meteor.publish('currentUserIntercomHash', function() {
-    if (this.userId) {
-      var intercomHash = IntercomHash(this.userId);
-    
-      if (intercomHash)
-        this.added("users", this.userId, {intercomHash: intercomHash});
-    }
-    this.ready();
-  });
-}
+Meteor.publish('currentUserIntercomHash', function() {
+  if (this.userId) {
+    var intercomHash = IntercomHash(this.userId);
+  
+    if (intercomHash)
+      this.added("users", this.userId, {intercomHash: intercomHash});
+  }
+  this.ready();
+});
