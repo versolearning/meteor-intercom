@@ -12,12 +12,14 @@ var IntercomHash =  function(userId) {
   }
 }
 
-Meteor.publish('currentUserIntercomHash', function() {
-  if (this.userId) {
-    var intercomHash = IntercomHash(this.userId);
+if (Meteor.settings.intercom && Meteor.settings.intercom.secret) {
+  Meteor.publish('currentUserIntercomHash', function() {
+    if (this.userId) {
+      var intercomHash = IntercomHash(this.userId);
     
-    if (intercomHash)
-      this.added("users", this.userId, {intercomHash: intercomHash});
-  }
-  this.ready();
-});
+      if (intercomHash)
+        this.added("users", this.userId, {intercomHash: intercomHash});
+    }
+    this.ready();
+  });
+}
