@@ -4,7 +4,7 @@ var crypto = Npm.require('crypto');
 
 // returns undefined if there is no secret
 var IntercomHash =  function(userId) {
-  var secret = Meteor.settings.intercom.secret;
+  var secret = Meteor.settings.intercom && Meteor.settings.intercom.secret;
 
   if (secret) {
     return crypto.createHmac('sha256', new Buffer(secret, 'utf8'))
