@@ -27,7 +27,7 @@ var booted = false;
 
 // send data to intercom
 Meteor.startup(function() {
-  if (Meteor.settings && 
+  if (Meteor.settings && Meteor.settings.public && 
       Meteor.settings.public.intercom && Meteor.settings.public.intercom.id) {
     Deps.autorun(function() {
       var user = Meteor.user();
