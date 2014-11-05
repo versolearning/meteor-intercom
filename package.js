@@ -1,6 +1,6 @@
 Package.describe({
-  summary: "Intercom.io basic integration (uses v1 snippet)",
-  version: "1.1.4",
+  summary: "Intercom.io basic integration (uses 'widget' snippet)",
+  version: "1.2.4",
   git: "https://github.com/percolatestudio/meteor-intercom.git",
 });
 
