@@ -1,6 +1,7 @@
 Package.describe({
+  name: 'percolate:intercom',
   summary: "Intercom.io basic integration (uses 'widget' snippet)",
-  version: "1.2.4",
+  version: "1.2.5",
   git: "https://github.com/percolatestudio/meteor-intercom.git",
 });
 
