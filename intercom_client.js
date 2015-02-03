@@ -26,7 +26,7 @@ var booted = false;
 Meteor.startup(function() {
   if (Meteor.settings && Meteor.settings.public && 
       Meteor.settings.public.intercom && Meteor.settings.public.intercom.id) {
-    Deps.autorun(function() {
+    Tracker.autorun(function() {
       var user = Meteor.user();
       if (!user) // "log out"
         return Intercom('shutdown');
