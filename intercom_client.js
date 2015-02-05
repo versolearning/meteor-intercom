@@ -28,8 +28,11 @@ Meteor.startup(function() {
       Meteor.settings.public.intercom && Meteor.settings.public.intercom.id) {
     Tracker.autorun(function() {
       var user = Meteor.user();
-      if (!user) // "log out"
+      if (!user) { // "log out"
+        // console.log('shutdown');
+        booted = false;
         return Intercom('shutdown');
+      }
   
       var info = IntercomSettings.minimumUserInfo(user);
       if (IntercomSettings.userInfo) {
