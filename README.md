@@ -34,6 +34,6 @@ This package will automatically subscribe the current user to the `currentUserIn
 
 ## License 
 
-MIT. (c) Percolate Studio
+MIT. (c) Percolate Studio, maintained by Tom Coleman (@tmeasday)
 
 Meteor Intercom was developed as part of the [Verso](http://versoapp.com) project.
