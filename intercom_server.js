@@ -4,7 +4,7 @@ var crypto = Npm.require('crypto');
 
 // returns undefined if there is no secret
 var IntercomHash =  function(userId) {
-  var secret = Meteor.settings && 
+  var secret = Meteor.settings &&
       Meteor.settings.intercom && Meteor.settings.intercom.secret;
 
   if (secret) {
@@ -16,7 +16,7 @@ var IntercomHash =  function(userId) {
 Meteor.publish('currentUserIntercomHash', function() {
   if (this.userId) {
     var intercomHash = IntercomHash(this.userId);
-  
+
     if (intercomHash)
       this.added("users", this.userId, {intercomHash: intercomHash});
   }

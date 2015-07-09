@@ -4,7 +4,7 @@ var minimumUserInfo = function(user) {
   var info = {
     app_id: Meteor.settings.public.intercom.id
   }
-  
+
   if (user)
     _.extend(info, {
       user_id: user._id,
@@ -24,29 +24,42 @@ var booted = false;
 
 // send data to intercom
 Meteor.startup(function() {
-  if (Meteor.settings && Meteor.settings.public && 
+  if (Meteor.settings && Meteor.settings.public &&
       Meteor.settings.public.intercom && Meteor.settings.public.intercom.id) {
     Tracker.autorun(function() {
       var user = Meteor.user();
-      if (!user) { // "log out"
-        // console.log('shutdown');
-        booted = false;
-        return Intercom('shutdown');
-      }
-  
+
       var info = IntercomSettings.minimumUserInfo(user);
-      if (IntercomSettings.userInfo) {
-        var ready = IntercomSettings.userInfo(user, info);
-        if (ready === false)
-          return;
+      var ready;
+
+      if (!user) {
+        if (Meteor.settings.public.intercom.allowAnonymous === true) { //typesafe check
+          if (IntercomSettings.anonymousInfo) {
+            ready = IntercomSettings.anonymousInfo(info);
+            if (ready === false)
+              return;
+          }
+        } else {
+          booted = false;
+          console.log('shutdown')
+          return Intercom('shutdown');
+        }
       }
-      
+
+      else {
+        if (IntercomSettings.userInfo) {
+          ready = IntercomSettings.userInfo(user, info);
+          if (ready === false)
+            return;
+        }
+      }
+
       if (info) {
         var type = booted ? 'update': 'boot';
-      
-        // console.log(type, info)
-        Intercom(type, info);
-      
+
+        console.log(type, info)
+        console.log(Intercom(type, info));
+
         booted = true;
       }
     });
