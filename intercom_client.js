@@ -41,7 +41,7 @@ Meteor.startup(function() {
           }
         } else {
           booted = false;
-          console.log('shutdown')
+          // console.log('shutdown')
           return Intercom('shutdown');
         }
       }
@@ -58,8 +58,7 @@ Meteor.startup(function() {
         var type = booted ? 'update': 'boot';
 
         console.log(type, info)
-        console.log(Intercom(type, info));
-
+        Intercom(type, info);
         booted = true;
       }
     });
