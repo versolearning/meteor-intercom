@@ -22,10 +22,3 @@ Meteor.publish('currentUserIntercomHash', function() {
   }
   this.ready();
 });
-
-Meteor.methods({
-  IntercomHashFunc : function(userId) {
-    check(userId, String);
-    return IntercomHash(userId);
-  }
-});
