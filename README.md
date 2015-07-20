@@ -21,10 +21,12 @@ IntercomSettings.userInfo = function(user, info) {
   // add properties to the info object, for instance:
   if (user.services.google) {
     info.email = user.services.google.email;
-    info['Name'] = user.services.google.given_name + ' ' + user.services.google.family_name;
+    info['name'] = user.services.google.given_name + ' ' + user.services.google.family_name;
   }
 }
 ```
+
+`email` and `name` are preset fields provided by Intercom. You may add any additional custom user attribute.
 
 If you need to wait on a user subscription for e.g. the hash to come down, you can return `false` in your `userInfo` function to tell the package to wait.
 
