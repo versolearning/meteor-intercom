@@ -33,15 +33,15 @@ Meteor.startup(function() {
       var ready;
 
       if (!user) {
-        if (Meteor.settings.public.intercom.allowAnonymous === true) { //typesafe check
+        if (Meteor.settings.public.intercom.allowAnonymous === true) {
           if (IntercomSettings.anonymousInfo) {
             ready = IntercomSettings.anonymousInfo(info);
             if (ready === false)
               return;
           }
         } else {
-          booted = false;
           // console.log('shutdown')
+          booted = false;
           return Intercom('shutdown');
         }
       }
