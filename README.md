@@ -59,11 +59,11 @@ On the server, you can also interact with the Intercom API via the official [int
 // Create an event for a user
 IntercomClient.events.create({
   event_name: 'Test event',
-    created_at: Math.floor(new Date().getTime()/1000),
-    user_id: '<Insert meteor user id>'
-  }, function (d) {
-      console.log(d);
-  });
+  created_at: Math.floor(new Date().getTime()/1000),
+  user_id: '<Insert meteor user id>'
+}, function (d) {
+  console.log(d);
+});
 ```
 
 ## Notes
