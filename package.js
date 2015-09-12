@@ -2,8 +2,10 @@ Package.describe({
   name: 'percolate:intercom',
   summary: "Intercom.io basic integration (uses 'widget' snippet)",
   version: "1.3.1",
-  git: "https://github.com/percolatestudio/meteor-intercom.git",
+  git: "https://github.com/percolatestudio/meteor-intercom.git"
 });
+
+Npm.depends({'intercom-client':'1.0.1'});
 
 Package.onUse(function(api) {
   if (api.versionsFrom)
@@ -17,4 +19,5 @@ Package.onUse(function(api) {
 
   api.export('IntercomSettings');
   api.export('IntercomHash', 'server');
+  api.export('IntercomClient', 'server');
 });

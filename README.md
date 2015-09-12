@@ -12,7 +12,7 @@ $ meteor add percolate:intercom
 
 ## API
 
-Ensure you have `Meteor.settings.intercom.secret` and `Meteor.settings.public.intercom.id` defined to the values provided to you by Intercom.
+Ensure you have `Meteor.settings.intercom.secret` and `Meteor.settings.public.intercom.id` defined to the values provided to you by Intercom. Also define `Meteor.settings.public.intercom.apikey` if you intend to user Intercom on the server side.
 
 Some Intercom subscription packages allow for anonymous users.  To enable the use of anonymous users, set `Meteor.settings.public.intercom.allowAnonymous` to `true`.
 
@@ -52,6 +52,18 @@ IntercomSettings.anonymousInfo = function ( info ) {
   info.anonymous = true;
   return;
 };
+```
+
+On the server, you can also interact with the Intercom API via the official [intercom-node client](https://github.com/intercom/intercom-node).
+```js
+// Create an event for a user
+IntercomClient.events.create({
+  event_name: 'Test event',
+    created_at: Math.floor(new Date().getTime()/1000),
+    user_id: '<Insert meteor user id>'
+  }, function (d) {
+      console.log(d);
+  });
 ```
 
 ## Notes
