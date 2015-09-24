@@ -1,6 +1,11 @@
 // Generate an intercomHash for secure mode as outlined at
 // https://segment.io/docs/integrations/intercom/#secure-mode
 var crypto = Npm.require('crypto');
+var Intercom = Npm.require('intercom-client');
+
+if (Meteor.settings.public.intercom.id && Meteor.settings.intercom.apikey) {
+    IntercomClient = new Intercom.Client(Meteor.settings.public.intercom.id, Meteor.settings.intercom.apikey);
+}
 
 // returns undefined if there is no secret
 var IntercomHash =  function(userId) {
