@@ -3,8 +3,13 @@
 var crypto = Npm.require('crypto');
 var Intercom = Npm.require('intercom-client');
 
-if (Meteor.settings.public.intercom.id && Meteor.settings.intercom.apikey) {
-    IntercomClient = new Intercom.Client(Meteor.settings.public.intercom.id, Meteor.settings.intercom.apikey);
+if (Meteor.settings
+   && Meteor.settings.public
+   && Meteor.settings.public.intercom
+   && Meteor.settings.public.intercom.id
+   && Meteor.settings.intercom
+   && Meteor.settings.intercom.apikey) {
+  IntercomClient = new Intercom.Client(Meteor.settings.public.intercom.id, Meteor.settings.intercom.apikey);
 }
 
 // returns undefined if there is no secret
