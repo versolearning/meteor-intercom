@@ -1,7 +1,7 @@
 Package.describe({
   name: 'q42:intercom',
-  summary: "Intercom.io basic integration using google oauth",
-  version: "1.3.1",
+  summary: "Intercom.io integration using google oauth useid",
+  version: "1.4.2",
   git: "https://github.com/q42/meteor-intercom.git"
 });
 
