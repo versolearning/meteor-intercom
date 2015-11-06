@@ -1,8 +1,8 @@
 Package.describe({
-  name: 'percolate:intercom',
-  summary: "Intercom.io basic integration (uses 'widget' snippet)",
-  version: "1.3.1",
-  git: "https://github.com/percolatestudio/meteor-intercom.git"
+  name: 'q42:intercom-oauthid',
+  summary: "Intercom.io integration using google oauth e-mailaddress as id",
+  version: "1.4.2",
+  git: "https://github.com/q42/meteor-intercom.git"
 });
 
 Npm.depends({'intercom-client':'1.0.1'});

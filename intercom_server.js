@@ -3,8 +3,13 @@
 var crypto = Npm.require('crypto');
 var Intercom = Npm.require('intercom-client');
 
-if (Meteor.settings.public.intercom.id && Meteor.settings.intercom.apikey) {
-    IntercomClient = new Intercom.Client(Meteor.settings.public.intercom.id, Meteor.settings.intercom.apikey);
+if (Meteor.settings
+   && Meteor.settings.public
+   && Meteor.settings.public.intercom
+   && Meteor.settings.public.intercom.id
+   && Meteor.settings.intercom
+   && Meteor.settings.intercom.apikey) {
+  IntercomClient = new Intercom.Client(Meteor.settings.public.intercom.id, Meteor.settings.intercom.apikey);
 }
 
 // returns undefined if there is no secret
@@ -20,10 +25,15 @@ var IntercomHash =  function(userId) {
 
 Meteor.publish('currentUserIntercomHash', function() {
   if (this.userId) {
-    var intercomHash = IntercomHash(this.userId);
+    var user = Meteor.users.findOne({_id:this.userId});
+    if (user && user.services && user.services.google && user.services.google.email) {
+      var intercomHash = IntercomHash(user.services.google.email);
 
-    if (intercomHash)
-      this.added("users", this.userId, {intercomHash: intercomHash});
+      if (intercomHash) {
+        this.added("users", this.userId, {intercomHash: intercomHash,
+          services:{ google: { email: user.services.google.email }}});
+      }
+    }
   }
   this.ready();
 });
