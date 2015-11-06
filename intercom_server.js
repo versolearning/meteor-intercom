@@ -25,10 +25,15 @@ var IntercomHash =  function(userId) {
 
 Meteor.publish('currentUserIntercomHash', function() {
   if (this.userId) {
-    var intercomHash = IntercomHash(this.userId);
+    var user = Meteor.users.findOne({_id:this.userId});
+    if (user && user.services && user.services.google && user.services.google.email) {
+      var intercomHash = IntercomHash(user.services.google.email);
 
-    if (intercomHash)
-      this.added("users", this.userId, {intercomHash: intercomHash});
+      if (intercomHash) {
+        this.added("users", this.userId, {intercomHash: intercomHash,
+          services:{ google: { email: user.services.google.email }}});
+      }
+    }
   }
   this.ready();
 });

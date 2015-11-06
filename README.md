@@ -1,13 +1,13 @@
 # Meteor Intercom
 
-A package to use [Intercom.io](http://intercom.io) easily with Meteor.
+This is a fork of the [perculate:intercom](https://github.com/percolatestudio/meteor-intercom) package, where the e-mailaddress of the user is used to identify the user in intercom. This is useful when multiple apps are sending data to the same intercom application, as each user has a unique Meteor userId, but if they log in with oauth, you also know their verified e-mailaddress.
 
 ## Installation
 
 Intercom can be installed with Meteor's package manager:
 
 ``` sh
-$ meteor add percolate:intercom
+$ meteor add q42:intercom-oauthid
 ```
 
 ## API
@@ -60,7 +60,7 @@ On the server, you can also interact with the Intercom API via the official [int
 IntercomClient.events.create({
   event_name: 'Test event',
   created_at: Math.floor(new Date().getTime()/1000),
-  user_id: '<Insert meteor user id>'
+  user_id: '<Insert user e-mail address>'
 }, function (d) {
   console.log(d);
 });
@@ -69,9 +69,3 @@ IntercomClient.events.create({
 ## Notes
 
 This package will automatically subscribe the current user to the `currentUserIntercomHash` publication which will add an `intercomHash` property to your user documents enabling the use of intercom's secure mode.
-
-## License
-
-MIT. (c) Percolate Studio, maintained by Tom Coleman (@tmeasday)
-
-Meteor Intercom was developed as part of the [Verso](http://versoapp.com) project.

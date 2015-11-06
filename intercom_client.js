@@ -14,12 +14,13 @@ var minimumUserInfo = function(user) {
     app_id: Meteor.settings.public.intercom.id
   }
 
-  if (user)
+  if (user && user.services && user.services.google && user.services.google.email) {
     _.extend(info, {
-      user_id: user._id,
+      user_id: user.services.google.email,
       created_at: Math.round(user.createdAt/1000),
       user_hash: user.intercomHash
     });
+  }
 
   return info;
 }
