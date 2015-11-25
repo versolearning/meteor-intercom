@@ -8,7 +8,7 @@ if (Meteor.settings.public.intercom.id && Meteor.settings.intercom.apikey) {
 }
 
 // returns undefined if there is no secret
-var IntercomHash =  function(userId) {
+IntercomHash =  function(userId) {
   var secret = Meteor.settings &&
       Meteor.settings.intercom && Meteor.settings.intercom.secret;
 
