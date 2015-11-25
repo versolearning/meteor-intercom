@@ -1,11 +1,13 @@
 // We *must* have the intercom id set otherwise the intercom loader script throws
 // exceptions. Warn people about this.
-if (!(Meteor.settings
-   && Meteor.settings.public
-   && Meteor.settings.public.intercom
-   && Meteor.settings.public.intercom.id)) {
-  console.warn("You must set Meteor.settings.public.intercom.id to use percolate:interom");
-}
+Meteor.startup(function() {
+  if (!(Meteor.settings
+    && Meteor.settings.public
+    && Meteor.settings.public.intercom
+    && Meteor.settings.public.intercom.id)) {
+    console.warn("You must set Meteor.settings.public.intercom.id to use percolate:interom");
+  }
+});
 
 Meteor.subscribe('currentUserIntercomHash');
 
