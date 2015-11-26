@@ -2,12 +2,14 @@
 
 A package to use [Intercom.io](http://intercom.io) easily with Meteor.
 
+NOTE: This package replaces `verso:intercom` which will no longer be maintained.
+
 ## Installation
 
 Intercom can be installed with Meteor's package manager:
 
 ``` sh
-$ meteor add percolate:intercom
+$ meteor add verso:intercom
 ```
 
 ## API

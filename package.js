@@ -1,8 +1,8 @@
 Package.describe({
-  name: 'percolate:intercom',
+  name: 'verso:intercom',
   summary: "Intercom.io basic integration (uses 'widget' snippet)",
-  version: "1.3.1",
-  git: "https://github.com/percolatestudio/meteor-intercom.git"
+  version: "1.3.2",
+  git: "https://github.com/versolearning/meteor-intercom.git"
 });
 
 Npm.depends({'intercom-client':'1.0.1'});
