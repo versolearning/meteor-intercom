@@ -2,7 +2,7 @@
 
 A package to use [Intercom.io](http://intercom.io) easily with Meteor.
 
-NOTE: This package replaces `percolate:intercom` which will no longer be maintained.
+NOTE: Package updates are released under `verso:intercom` as it replaces `percolate:intercom`.
 
 ## Installation
 
