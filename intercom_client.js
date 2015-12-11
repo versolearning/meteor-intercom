@@ -1,11 +1,10 @@
+var canRun = false;
+
 // We *must* have the intercom id set otherwise the intercom loader script throws
 // exceptions. Warn people about this.
 Meteor.startup(function() {
-  if (!(Meteor.settings
-    && Meteor.settings.public
-    && Meteor.settings.public.intercom
-    && Meteor.settings.public.intercom.id)) {
-    console.warn("You must set Meteor.settings.public.intercom.id to use percolate:interom");
+  if (! Meteor._get(Meteor, 'settings', 'public', 'intercom', 'id')) {
+    console.warn("You must set Meteor.settings.public.intercom.id to use percolate:intercom");
   }
 });
 
@@ -13,8 +12,8 @@ Meteor.subscribe('currentUserIntercomHash');
 
 var minimumUserInfo = function(user) {
   var info = {
-    app_id: Meteor.settings.public.intercom.id
-  }
+    app_id: Meteor._get(Meteor, 'settings', 'public', 'intercom', 'id')
+  };
 
   if (user)
     _.extend(info, {
@@ -24,12 +23,12 @@ var minimumUserInfo = function(user) {
     });
 
   return info;
-}
+};
 
 IntercomSettings = {
   // if you want to manually call it
   minimumUserInfo: minimumUserInfo
-}
+};
 
 var booted = false;
 
@@ -42,7 +41,7 @@ Meteor.startup(function() {
     var ready;
 
     if (!user) {
-      if (Meteor.settings.public.intercom.allowAnonymous === true) {
+      if (Meteor._get(Meteor, 'settings', 'public', 'intercom', 'allowAnonymous') === true) {
         if (IntercomSettings.anonymousInfo) {
           ready = IntercomSettings.anonymousInfo(info);
           if (ready === false)
@@ -53,9 +52,7 @@ Meteor.startup(function() {
         booted = false;
         return Intercom('shutdown');
       }
-    }
-
-    else {
+    } else {
       if (IntercomSettings.userInfo) {
         ready = IntercomSettings.userInfo(user, info);
         if (ready === false)
@@ -64,11 +61,11 @@ Meteor.startup(function() {
     }
 
     if (info) {
-      var type = booted ? 'update': 'boot';
+      var type = booted ? 'update' : 'boot';
 
       // console.log(type, info)
       Intercom(type, info);
       booted = true;
     }
   });
-})
+});

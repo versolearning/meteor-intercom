@@ -3,13 +3,14 @@ Meteor.startup(function() {
   // fall back to the old url but apparantly in-app messaging will no longer
   // work
   var widgetUrl;
-  var appId = IntercomSettings.minimumUserInfo().app_id;
-  
+  var minimumUserInfo = IntercomSettings.minimumUserInfo();
+  var appId = minimumUserInfo && minimumUserInfo.app_id;
+
   if (appId)
     widgetUrl = 'https://widget.intercom.io/widget/' + appId;
   else
     widgetUrl = 'https://static.intercomcdn.com/intercom.v1.js';
-  
+
   // ------ The snippet below is almost identical to the official one however
   // ------ we substitute in widgetUrl instead of a statically defined one.
   // ------ In addition, it has been found that the window.onload event is unreliable
@@ -44,4 +45,4 @@ Meteor.startup(function() {
     }
   })();
   // ------
-})
+});
