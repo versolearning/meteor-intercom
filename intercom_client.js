@@ -1,5 +1,3 @@
-var canRun = false;
-
 // We *must* have the intercom id set otherwise the intercom loader script throws
 // exceptions. Warn people about this.
 Meteor.startup(function() {
