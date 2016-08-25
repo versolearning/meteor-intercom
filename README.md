@@ -58,10 +58,12 @@ IntercomSettings.anonymousInfo = function ( info ) {
 
 On the server, you can also interact with the Intercom API via the official [intercom-node client](https://github.com/intercom/intercom-node).
 ```js
+const client = IntercomClient();
+
 // Create an event for a user
-IntercomClient.events.create({
+client.events.create({
   event_name: 'Test event',
-  created_at: Math.floor(new Date().getTime()/1000),
+  created_at: Math.floor(new Date().getTime() / 1000),
   user_id: '<Insert meteor user id>'
 }, function (d) {
   console.log(d);
@@ -74,6 +76,6 @@ This package will automatically subscribe the current user to the `currentUserIn
 
 ## License
 
-MIT. (c) Percolate Studio, maintained by Tom Coleman (@tmeasday)
+MIT. (c) Percolate Studio
 
 Meteor Intercom was developed as part of the [Verso](http://versoapp.com) project.
