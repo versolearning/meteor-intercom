@@ -74,6 +74,11 @@ client.events.create({
 
 This package will automatically subscribe the current user to the `currentUserIntercomHash` publication which will add an `intercomHash` property to your user documents enabling the use of intercom's secure mode.
 
+## Other References
+
+Integrating intercom.io into a meteor app.
+https://meteoruniversity.org/integrating-intercom-io-into-a-meteor-app/
+
 ## License
 
 MIT. (c) Percolate Studio
