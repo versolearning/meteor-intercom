@@ -4,16 +4,26 @@ var crypto = Npm.require('crypto');
 var Intercom = Npm.require('intercom-client');
 
 IntercomClient = function IntercomClient() {
+  //support for Personal Access token:
+  const pat = Meteor._get(Meteor, 'settings', 'intercom', 'personalAccessToken');
+
+  //api
   const id = Meteor._get(Meteor, 'settings', 'public', 'intercom', 'id');
   const apikey = Meteor._get(Meteor, 'settings', 'intercom', 'apikey');
+
+  //priority
+  if (pat) {
+    return new Intercom.Client({ token: pat });
+  }
 
   if (id && apikey) {
     return new Intercom.Client(id, apikey);
   }
 
   return console.warn(`
-    You must set Meteor.settings.public.intercom.id
-    and Meteor.settings.intercom.apikey to use IntercomClient 
+    You must set Meteor.settings.intercom.personalAccessToken
+    or add Meteor.settings.public.intercom.id
+    and Meteor.settings.intercom.apikey to use IntercomClient
   `);
 };
 
