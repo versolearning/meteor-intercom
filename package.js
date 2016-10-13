@@ -5,7 +5,7 @@ Package.describe({
   git: 'https://github.com/versolearning/meteor-intercom.git'
 });
 
-Npm.depends({ 'intercom-client': '2.8.1' });
+Npm.depends({ 'intercom-client': '2.8.3' });
 
 Package.onUse(function(api) {
   if (api.versionsFrom)

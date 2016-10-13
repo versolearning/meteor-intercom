@@ -14,7 +14,7 @@ $ meteor add verso:intercom
 
 ## API
 
-Ensure you have `Meteor.settings.intercom.secret` and `Meteor.settings.public.intercom.id` defined to the values provided to you by Intercom. Also define `Meteor.settings.intercom.apikey` if you intend to use Intercom on the server side.
+Ensure you have `Meteor.settings.intercom.secret` and `Meteor.settings.public.intercom.id` defined to the values provided to you by Intercom. *API Keys are being deprecated*. You can define the `Meteor.settings.intercom.personalAccessToken` if you intend to use Intercom on the server side, otherwise you can still define `Meteor.settings.intercom.apikey`.
 
 Some Intercom subscription packages allow for anonymous users.  To enable the use of anonymous users, set `Meteor.settings.public.intercom.allowAnonymous` to `true`.
 
