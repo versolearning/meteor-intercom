@@ -1,7 +1,7 @@
 Package.describe({
   name: 'verso:intercom',
   summary: "Intercom.io basic integration (uses 'widget' snippet)",
-  version: '1.4.0',
+  version: '1.5.0',
   git: 'https://github.com/versolearning/meteor-intercom.git'
 });
 
